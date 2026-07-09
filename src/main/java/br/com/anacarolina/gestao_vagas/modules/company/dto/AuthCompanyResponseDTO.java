@@ -1,15 +1,15 @@
 package br.com.anacarolina.gestao_vagas.modules.company.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthCompanyDTO {
-
-    private String password;
-    private String username;
-
+@Builder
+@Data
+public class AuthCompanyResponseDTO {
+    private String accessToken;
+    private Long expires_in;
 }

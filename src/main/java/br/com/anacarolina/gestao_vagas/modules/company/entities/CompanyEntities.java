@@ -35,7 +35,7 @@ public class CompanyEntities {
   @Schema(example = "admin@1234", minLength = 10, maxLength = 100, requiredMode = RequiredMode.REQUIRED, description = "Senha do candidato")
   private String password;
     private String name;
-    private String desciption;
+    private String description;
     private String age;
 
     @CreationTimestamp

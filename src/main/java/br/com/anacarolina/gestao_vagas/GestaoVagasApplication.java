@@ -7,7 +7,10 @@ import io.swagger.v3.oas.annotations.info.Info;
 
     
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Gestão de Vagas API", version = "1.0", description = "API para gerenciamento de vagas de emprego"))
+@OpenAPIDefinition(
+        info = @Info(title = "Gestão de Vagas API",
+                version = "1.0",
+                description = "API para gerenciamento de vagas de emprego"))
 
 public class GestaoVagasApplication {
     public static void main(String[] args) {
