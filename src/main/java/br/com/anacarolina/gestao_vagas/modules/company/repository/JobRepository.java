@@ -13,7 +13,7 @@ public interface JobRepository extends JpaRepository<JobEntities, UUID> {
 
     // Select * from job where description like %filter% (começo, no fim ou em qualquer lugar)
 
-    List<JobEntities> findByDescriptionContaining(String filter);
+    List<JobEntities> findByDescriptionContainingIgnoreCase(String title);
 
 
 }
