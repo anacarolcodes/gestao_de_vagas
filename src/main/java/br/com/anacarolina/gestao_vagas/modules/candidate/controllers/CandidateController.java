@@ -4,6 +4,7 @@ package br.com.anacarolina.gestao_vagas.modules.candidate.controllers;
 import br.com.anacarolina.gestao_vagas.modules.candidate.entities.CandidateEntity;
 import br.com.anacarolina.gestao_vagas.modules.candidate.useCases.ListAllJobsByFilterUseCase;
 import br.com.anacarolina.gestao_vagas.modules.candidate.useCases.ProfileCandidateUseCase;
+import br.com.anacarolina.gestao_vagas.modules.company.dto.ProfileCandidateResponseDTO;
 import br.com.anacarolina.gestao_vagas.modules.company.entities.JobEntities;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -53,6 +54,16 @@ public class CandidateController {
 
     @GetMapping("/")
     @PreAuthorize("hasRole('CANDIDATE')")
+    @Tag(name = "Candidato", description =  "Informações do candidato")
+    @Operation(summary = "Listagem de vagas disponível para o candidato", description = "Essa função é responsável por buscar as iformações do perfil do candidato")
+    @SecurityRequirement(name = "jwt_auth")
+    @ApiResponses({@ApiResponse(responseCode = "400", description = "User not found"),
+            @ApiResponse(responseCode = "500", description = "Error service"),
+            @ApiResponse(responseCode = "200", content = {
+            @Content(schema = @Schema(implementation = ProfileCandidateResponseDTO.class))
+    }),
+    })
+    @SecurityRequirement(name = "jwt_auth")
     public ResponseEntity<Object> get(HttpServletRequest request) {
 
       var idCandidate = request.getAttribute("candidate_id");
