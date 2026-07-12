@@ -1,5 +1,6 @@
 package br.com.anacarolina.gestao_vagas.modules.company.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -21,14 +22,20 @@ public class JobEntities {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @Schema(example = "Vaga para design")
     private String description;
     @NotBlank(message = "O campo título é obrigatório")
+
+    @Schema(example = "SENIOR")
     private String level;
+
+    @Schema(example = "Gympass, PLano de saúde")
     private String benefits;
 
-    @ManyToOne()
-    @JoinColumn(name = "company_id", insertable = false, updatable = false)
-    private CompanyEntities companyEntities;
+//    @ManyToOne()
+//    @JoinColumn(name = "company_id", insertable = false, updatable = false)
+//    private CompanyEntities companyEntities;
 
     @Column(name = "company_id", nullable = false)
     private UUID companyId;
