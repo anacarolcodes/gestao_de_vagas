@@ -1,4 +1,4 @@
-package br.com.anacarolina.gestao_vagas.modules.config;
+package br.com.anacarolina.gestao_vagas.modules.security;
 
 import br.com.anacarolina.gestao_vagas.modules.providers.JWTProvider;
 import jakarta.servlet.FilterChain;
@@ -15,7 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class SecurityFilter extends OncePerRequestFilter {
+public class SecurityCompanyFilter extends OncePerRequestFilter {
 
     @Autowired
     private JWTProvider jwtProvider;

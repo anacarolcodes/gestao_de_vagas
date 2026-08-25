@@ -1,4 +1,4 @@
-package br.com.anacarolina.gestao_vagas.modules.config;
+package br.com.anacarolina.gestao_vagas.modules.security;
 
 import br.com.anacarolina.gestao_vagas.modules.providers.JWTCandidateProvider;
 import jakarta.servlet.FilterChain;

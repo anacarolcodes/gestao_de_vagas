@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
@@ -16,6 +19,9 @@ import lombok.Data;
 
 @Data
 @Entity(name = "company")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CompanyEntities {
     
     @Id

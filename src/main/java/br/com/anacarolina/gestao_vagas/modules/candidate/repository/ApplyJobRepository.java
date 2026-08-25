@@ -1,4 +1,9 @@
 package br.com.anacarolina.gestao_vagas.modules.candidate.repository;
 
-public class ApplyJobEntity {
+import br.com.anacarolina.gestao_vagas.modules.candidate.entity.ApplyJobEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface ApplyJobRepository extends JpaRepository<ApplyJobEntity, UUID>{
 }

@@ -1,4 +1,4 @@
-package br.com.anacarolina.gestao_vagas.utils;
+package br.com.anacarolina.gestao_vagas.modules.candidate.useCases;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

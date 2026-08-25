@@ -1,7 +1,7 @@
 package br.com.anacarolina.gestao_vagas.modules.candidate.useCases;
 
 import br.com.anacarolina.gestao_vagas.modules.candidate.dto.AuthCandidateRequestDTO;
-import br.com.anacarolina.gestao_vagas.modules.candidate.repositories.CandidateRepository;
+import br.com.anacarolina.gestao_vagas.modules.candidate.repository.CandidateRepository;
 import br.com.anacarolina.gestao_vagas.modules.candidate.dto.AuthCandidateResponseDTO;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

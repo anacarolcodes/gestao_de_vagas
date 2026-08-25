@@ -1,24 +1,27 @@
-package br.com.anacarolina.gestao_vagas.modules.company.controllers;
+package br.com.anacarolina.gestao_vagas.modules.candidate.useCases.company.controllers;
 
+import br.com.anacarolina.gestao_vagas.modules.candidate.useCases.TestUtils;
 import br.com.anacarolina.gestao_vagas.modules.company.dto.CreateJobDTO;
+import br.com.anacarolina.gestao_vagas.modules.company.entities.CompanyEntities;
 import br.com.anacarolina.gestao_vagas.modules.company.repository.CompanyRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.test.web.servlet.utils.TestUtils;
 import org.springframework.web.context.WebApplicationContext;
 
-
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnviroment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ActiveProfiles("test")
 public class CreateJobControllerTest {
 
     private MockMvc mvc;
@@ -29,6 +32,7 @@ public class CreateJobControllerTest {
     @Autowired
     private CompanyRepository companyRepository;
 
+
     @Before
     public void setup() {
         mvc = MockMvcBuilders.webAppContextSetup(context)
@@ -37,30 +41,29 @@ public class CreateJobControllerTest {
     }
 
     @Test
-    public void should_be_able_to_create_a_new_job() throws
-            Exception {
+    public void should_be_able_to_create_a_new_job() throws Exception {
+        var company = CompanyEntities.builder()
+                .description("COMPANY_DESCRIPTION")
+                .email("email@company.com")
+                .password("1234567890")
+                .username("COMPANY_USERNAME")
+                .name("COMPANY_NAME")
+                .build();
+
+        company = companyRepository.saveAndFlush(company);
+
         var createdJobDTO = CreateJobDTO.builder()
                 .benefits("BENEFITS_TEST")
-                .description("DESCRIPTION_TEST")
+                .description("")
                 .level("LEVEL_TEST")
                 .build();
 
-        var result = mvc.perform(MockMvcRequestBuilders.post("/company/job/")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(TestUtils.objectToJson(createdJobDTO)))
-                .header("Authorization", TestUtils.generateToken)
-
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-        System.out.println(result);
-    }
-
-    private static String objectToJson(Object obj) {
-        try {
-            final ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            mvc.perform(MockMvcRequestBuilders.post("/company/job/")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtils.objectToJson(createdJobDTO))
+                    .header("Authorization", TestUtils.generateToken(company.getId(), "JAVAGAS_@123#")))
+                    .andExpect(MockMvcResultMatchers.status().isBadRequest());
         }
+
     }
-}
+

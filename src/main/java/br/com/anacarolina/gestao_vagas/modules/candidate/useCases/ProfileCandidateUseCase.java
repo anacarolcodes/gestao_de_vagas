@@ -1,7 +1,8 @@
 package br.com.anacarolina.gestao_vagas.modules.candidate.useCases;
 
-import br.com.anacarolina.gestao_vagas.modules.candidate.repositories.CandidateRepository;
+import br.com.anacarolina.gestao_vagas.modules.candidate.repository.CandidateRepository;
 import br.com.anacarolina.gestao_vagas.modules.company.dto.ProfileCandidateResponseDTO;
+import br.com.anacarolina.gestao_vagas.modules.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class ProfileCandidateUseCase {
     public ProfileCandidateResponseDTO execute(UUID idCandidate) {
         var candidate = this.candidateRepository.findById(idCandidate)
                 .orElseThrow(() -> {
-                    throw new UsernameNotFoundException("User not found");
+                    throw new UserNotFoundException();
                 });
 
         var candidateDTO = ProfileCandidateResponseDTO.builder()

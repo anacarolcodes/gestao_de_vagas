@@ -1,10 +1,10 @@
-package br.com.anacarolina.gestao_vagas.modules.candidate.repositories;
+package br.com.anacarolina.gestao_vagas.modules.candidate.repository;
 
 
 import java.util.Optional;
 import java.util.UUID;
 
-import br.com.anacarolina.gestao_vagas.modules.candidate.entities.CandidateEntity;
+import br.com.anacarolina.gestao_vagas.modules.candidate.entity.CandidateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CandidateRepository extends JpaRepository<CandidateEntity, UUID> {

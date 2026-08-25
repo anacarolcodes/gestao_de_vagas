@@ -1,4 +1,4 @@
-package br.com.anacarolina.gestao_vagas.modules.config;
+package br.com.anacarolina.gestao_vagas.modules.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 public class SecurityConfig {
 
     @Autowired
-    private SecurityFilter securityFilter;
+    private SecurityCompanyFilter securityFilter;
 
     @Autowired
     private SecurityCandidateFilter secutiryCandidateFilter;
