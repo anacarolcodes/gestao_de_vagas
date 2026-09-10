@@ -4,7 +4,6 @@ import br.com.anacarolina.gestao_vagas.modules.candidate.repository.CandidateRep
 import br.com.anacarolina.gestao_vagas.modules.company.dto.ProfileCandidateResponseDTO;
 import br.com.anacarolina.gestao_vagas.modules.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

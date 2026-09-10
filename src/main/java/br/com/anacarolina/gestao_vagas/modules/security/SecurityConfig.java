@@ -24,10 +24,11 @@ public class SecurityConfig {
     private SecurityCandidateFilter secutiryCandidateFilter;
 
 
-    private static final String[] SWAGGER_LIST = {
+    private static final String[] PERMIT_ALL_LIST = {
             "/swagger-ui/**",
             "/v3/api-docs/**",
-            "/swagger-resources/**"
+            "/swagger-resources/**",
+            "/actuator/**"
     };
 
     @Bean
@@ -41,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers(mvcMatcherBuilder.pattern("/company/")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/company/auth")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/candidate/auth")).permitAll()
+                        .requestMatchers(PERMIT_ALL_LIST).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-resources/**")).permitAll()
                         .anyRequest().authenticated()
                 )
